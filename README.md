@@ -67,7 +67,7 @@ Since the Ubuntu20.04 minimal lxc container is used as base, the repository need
 ### Proxy Settings
 
 The templates respect the following network proxy environment variables
-and forward them on to the virtual machine environment during the box creation
+and forward them on to the container environment during the image creation
 process, should you be using a proxy:
 
 * http_proxy
@@ -100,8 +100,6 @@ The default is `custom-script.sh` which does nothing.
 ## Known Issues
 
 - xrdp commes disabled by default. During first start of the WSL2 Distribution, the xrdp service will enabled and reconfigured, to prevent brakeage.
-
-
 
 ## Contributing
 
