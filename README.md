@@ -2,7 +2,12 @@
 
 This repository contains a [Packer](https://packer.io/) template to create a WSL2 Ubuntu box according Vagrant conventions.
 
-Note: For time beeing vagrant does not support a wsl provider, as such the convention is met for future use (if ever implemented)
+Note: For time beeing vagrant does not support a wsl provider, as such the convention is met for future use (if ever implemented). Though, it works regardless in WSL2.
+
+The project is inspired by and directly uses artefacts from following projects:
+- xWSL (https://github.com/DesktopECHO/xWSL)
+- ubuntu-wsl2-systemd-script (https://github.com/FiestaLake/ubuntu-wsl2-systemd-script)
+- boxcutter (https://github.com/boxcutter/ubuntu)
 
 ### Overview
 
@@ -16,11 +21,6 @@ The target image contains:
 - epiphany-browser
 
 WSLInterop works out of the box.
-
-The project is inspired by and directly uses artefacts from following projects:
-- xWSL (https://github.com/DesktopECHO/xWSL)
-- ubuntu-wsl2-systemd-script (https://github.com/FiestaLake/ubuntu-wsl2-systemd-script)
-- boxcutter (https://github.com/boxcutter/ubuntu)
 
 ## Building the WSL box with Packer
 
