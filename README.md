@@ -24,11 +24,12 @@ WSLInterop works out of the box.
 
 ## Building the WSL box with Packer
 
-To build the WSL box, you need a [LXD](https://linuxcontainers.org) host. This can either be any WSL2 Distro with enabled systemd and LXD, or any Linux Distro that supports LXD. The build is tested on WSL2 Ubuntu 20.04 with enabled systemd and LXD.
+To build the WSL box, you need a [LXD](https://linuxcontainers.org) host. This can either be any WSL2 Distro with enabled systemd and LXD, or any Linux Distro that supports LXD. The build is tested on WSL2 Ubuntu 20.04 with enabled systemd and LXD. If you not already have a WSL2 Distro with enabled systemd, you can use `make enable_systemd_on_wsl2` to enable systemd for the running distro. Please follow the instructions on screen, as it might become necessary to set Windows environment variables in order for this method to work.
+
 
 The packer configuration uses HCL2 Packer templates and leverages the packer bash provisioner to perfom the actions.
 
-### Precondtion
+### Precondition
 
 The Makefile includes variables that can be customized:
 

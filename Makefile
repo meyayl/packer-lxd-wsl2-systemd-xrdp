@@ -19,6 +19,12 @@ all:
 # Deploy phony's
 # ==============================================================================
 
+.PHONY: enable_systemd_on_wsl2
+enable_systemd_on_wsl2:
+	@git clone https://github.com/meyayl/ubuntu-wsl2-systemd-script.git ~/ubuntu-wsl2-systemd-script \
+	&&  ~/ubuntu-wsl2-systemd-script \
+	&& bash install.sh
+
 .PHONY: install_packer
 install_packer:
 	@curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
@@ -60,10 +66,3 @@ export_lxd_wsl2_image:
 	echo "  start wsl2 container:" && \
 	echo "    wsl -d $(wsl_distribution)" && \
 	echo "Wait a couple of seconds before accessing it with rdp"
-
-#export windows_path=$${wsl_source_path#/mnt/*} && \
-#export windows_drive=$${windows_path%%/*} && \
-#export windows_source_path=$${windows_path#*/} && \
-#export windows_source_path=$${windows_source_path////\\} && \
-
-ash 
