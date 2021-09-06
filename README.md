@@ -45,25 +45,62 @@ Change the values however you need them.
 Make sure a recent Packer version is installed. The Makefile has a target for Ubuntu/Debian machines:
 
 ```
-    $ make install_packer
+    # make install_packer
 ```
 Since the Ubuntu20.04 minimal lxc container is used as base, the repository needs to be import before the first build:
 
 ```
-    $ make import_image_repo
+    # make import_image_repo
 ```
 
 ### Build LXD image
 
 ```
-    $ make build_lxd_image
+    # make build_lxd_image
 ```
 
 ### Export WSL2 image
 
 ```
-    $ make export_lxd_wsl2_image
+    # make export_lxd_wsl2_image
 ```
+
+### Change WSL2 "entrypoint script"
+Manually run the two commands in Windows's cmd.exe:
+
+```
+    setx WSLENV BASH_ENV/u
+    setx BASH_ENV /etc/bash.bashrc
+```
+The first command adds the variable BASH_ENV to the list of variables passed from the windows host to the WSL2 distribution.
+The second commands sets the variable BASH_ENV to execute `/etc/bash.bashrc` when starting the WSL2 distribution.
+
+This is required to enable Systemd services when starting the distribution!
+
+### Import WSL2 distribution
+Run the commands to import the image as distribution in WSL2:
+
+```
+    wsl.exe--import <Distribution> <Installationsverzeichnis> <Dateiname> [Optionen]
+```
+
+Example:
+
+```
+    wsl.exe --import myDistribution  C:\wsldistros\sources\myDistribution C:\wsldistros\sources\${export_wsl_image} --version 2
+```
+Replace "myDistribution" with the name you want to name you imported distribution.
+
+Then start the container as usual with `wsl -d myDistribution` or `wsl --distribution myDistribution`
+
+### Connect to XRDP
+Open mstsc aka remotedesktop and expand the options. Set the computername to `localhost`
+Set the username to `vagrant` and the password to `vagrant`.
+
+Enable the shared clipboar as needed.
+
+Note: to enable device sharing (which is unnecessary due to WSLInterop) make sure only drives are shared within the connection. 
+If other devices are shared, the resource sharing becomes ineffective and nothing becomes shared!
 
 ### Proxy Settings
 
@@ -77,7 +114,7 @@ process, should you be using a proxy:
 * rsync_proxy
 * no_proxy
 
-### Variable overrides
+### Packer Variable overrides
 
 There are several variables that can be used to override some of the default
 settings in the box build process. 
@@ -106,7 +143,7 @@ The default is `custom-script.sh` which does nothing.
 
 1. Fork and clone the repo.
 2. Create a new branch, please don't work in your `master` branch directly.
-3. Fix stuff.
+3. FiSx stuff.
 4. Update `README.md` and `AUTHORS` to reflect any changes.
 5. If you have a large change in mind, it is still preferred that you split them into small commits.  Good commit messages are important.  The git documentatproject has some nice guidelines on [writing descriptive commit messages](http://git-scm.com/book/ch5-2.html#Commit-Guidelines).
 6. Push to your fork and submit a pull request.
