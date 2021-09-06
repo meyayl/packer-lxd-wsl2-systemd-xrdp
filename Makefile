@@ -5,7 +5,7 @@ SHELL := bash
 .DELETE_ON_ERROR:
 .SUFFIXES:
 
-export export_lxd_image := ubuntu2004
+export export_wsl_image := ubuntu2004
 export output_wsl_image_path := ${HOME}/wsl-ubuntu2004.tar.gz
 export wsl_source_path := /mnt/c/wsldistros/sources/
 export wsl_distribution := lxd
@@ -48,7 +48,7 @@ export_lxd_wsl2_image:
 	@echo "Create temp folder" && \
 	tmp_folder=$$(mktemp -d) && \
 	echo "Export lxd image to temp folder" && \
-	lxc image export $(export_lxd_image) $${tmp_folder}/image && \
+	lxc image export $(export_wsl_image) $${tmp_folder}/image && \
 	echo "Untar lxd image to extract rootfs folder" && \
 	tar -xzf $${tmp_folder}/image.tar.gz --same-owner -C "$${tmp_folder}" && \
 	pushd "$${tmp_folder}/rootfs" && \
