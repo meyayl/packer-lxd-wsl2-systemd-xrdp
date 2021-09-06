@@ -34,7 +34,7 @@ The packer configuration uses HCL2 Packer templates and leverages the packer bas
 The Makefile includes variables that can be customized:
 
 ```
-export export_lxd_image := ubuntu2004
+export export_wsl_image := ubuntu2004
 export output_wsl_image_path := ${HOME}/wsl-ubuntu2004.tar.gz
 export wsl_source_path := /mnt/c/wsldistros/sources/
 export wsl_distribution := lxd
