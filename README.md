@@ -64,7 +64,40 @@ Since the Ubuntu20.04 minimal lxc container is used as base, the repository need
 ```
     # make export_lxd_wsl2_image
 ```
+### Packer Proxy Settings
 
+The templates respect the following network proxy environment variables
+and forward them on to the container environment during the image creation
+process, should you be using a proxy:
+
+* http_proxy
+* https_proxy
+* ftp_proxy
+* rsync_proxy
+* no_proxy
+
+### Packer Variable overrides
+
+There are several variables that can be used to override some of the default
+settings in the box build process. 
+
+The variable `UPDATE` can be used to perform OS patch management.  The
+default is to not apply OS updates by default.  When `UPDATE := true`,
+the latest OS updates will be applied.
+
+The variables `SSH_USERNAME` and `SSH_PASSWORD` can be used to change the
+ default name & password from the default `vagrant`/`vagrant` respectively.
+
+The variable `INSTALL_VAGRANT_KEY` can be set to turn off installation of the
+default insecure vagrant key when the image is being used outside of vagrant.
+Set `INSTALL_VAGRANT_KEY := false`, the default is true.
+
+The variable `CUSTOM_SCRIPT` can be used to specify a custom script
+to be executed. You can add it to the `script/custom` directory (content
+is ignored by Git).
+The default is `custom-script.sh` which does nothing.
+
+## Import and run the Image as WSL2 Distribution
 ### Change WSL2 "entrypoint script"
 Manually run the two commands in Windows's cmd.exe:
 
@@ -97,43 +130,11 @@ Then start the container as usual with `wsl -d myDistribution` or `wsl --distrib
 Open mstsc aka remotedesktop and expand the options. Set the computername to `localhost`
 Set the username to `vagrant` and the password to `vagrant`.
 
-Enable the shared clipboar as needed.
+Enable the shared clipboard as needed.
 
-Note: to enable device sharing (which is unnecessary due to WSLInterop) make sure only drives are shared within the connection. 
+Note: to enable device sharing (which is unnecessary due to WSLInterop) make sure only drives are shared within the connection.
 If other devices are shared, the resource sharing becomes ineffective and nothing becomes shared!
 
-### Proxy Settings
-
-The templates respect the following network proxy environment variables
-and forward them on to the container environment during the image creation
-process, should you be using a proxy:
-
-* http_proxy
-* https_proxy
-* ftp_proxy
-* rsync_proxy
-* no_proxy
-
-### Packer Variable overrides
-
-There are several variables that can be used to override some of the default
-settings in the box build process. 
-
-The variable `UPDATE` can be used to perform OS patch management.  The
-default is to not apply OS updates by default.  When `UPDATE := true`,
-the latest OS updates will be applied.
-
-The variables `SSH_USERNAME` and `SSH_PASSWORD` can be used to change the
- default name & password from the default `vagrant`/`vagrant` respectively.
-
-The variable `INSTALL_VAGRANT_KEY` can be set to turn off installation of the
-default insecure vagrant key when the image is being used outside of vagrant.
-Set `INSTALL_VAGRANT_KEY := false`, the default is true.
-
-The variable `CUSTOM_SCRIPT` can be used to specify a custom script
-to be executed. You can add it to the `script/custom` directory (content
-is ignored by Git).
-The default is `custom-script.sh` which does nothing.
 
 ## Known Issues
 
