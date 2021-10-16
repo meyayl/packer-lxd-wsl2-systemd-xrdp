@@ -2,7 +2,7 @@
 
 This repository contains a [Packer](https://packer.io/) template to create a WSL2 Ubuntu box according Vagrant conventions.
 
-Note: For time beeing vagrant does not support a wsl provider, as such the convention is met for future use (if ever implemented). Though, it works regardless in WSL2.
+Note: For time beeing vagrant does not support a wsl provider, as such the convention is met for future use (if ever implemented). Though, it works regardless in WSL2 and WSLg.
 
 The project is inspired by and directly uses artefacts from following projects:
 - xWSL (https://github.com/DesktopECHO/xWSL)
@@ -21,6 +21,11 @@ The target image contains:
 - epiphany-browser
 
 WSLInterop works out of the box.
+On WSLg, thanks to WSLInterop, xrdp will leverage hardware accelaration provided by /dev/xdg.
+
+Note: Re-using the unix daemon socket of the WSLg host vm prevents the start of xrdp. 
+      For time beeing hardware accelerated WSLg is slower than softwar rendered WSL2.
+      This is something microsoft needs to fix. 
 
 ## Building the WSL box with Packer
 
@@ -114,13 +119,13 @@ This is required to enable Systemd services when starting the distribution!
 Run the commands to import the image as distribution in WSL2:
 
 ```
-    wsl.exe--import <Distribution> <Installationsverzeichnis> <Dateiname> [Optionen]
+    wsl.exe--import <name of the imported distribution> <installation folder for vhdx> <filename> [options]
 ```
 
 Example:
 
 ```
-    wsl.exe --import myDistribution  C:\wsldistros\sources\myDistribution C:\wsldistros\sources\${export_wsl_image} --version 2
+    wsl.exe --import myDistribution  C:\wsldistros\sources\myDistribution C:\wsldistros\sources\myDistribution.tar.gz--version 2
 ```
 Replace "myDistribution" with the name you want to name you imported distribution.
 

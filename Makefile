@@ -62,7 +62,7 @@ export_lxd_wsl2_image:
 	sudo mv $(output_wsl_image_path) $(wsl_source_path) && \
 	export wsl_image_filename=$${output_wsl_image_path##*/} && \
 	echo "  import in powershell:" && \
-	echo "    wsl.exe --import $(wsl_distribution)  $$(wslpath -w $(wsl_source_path))\$(wsl_distribution) $$(wslpath -w $(wsl_source_path))\$${wsl_image_filename} --version 2" && \
+	echo "    wsl.exe --import $(wsl_distribution)  $$(wslpath -w $(wsl_source_path))\$(wsl_distribution) $$(wslpath -w $(wsl_source_path))\${wsl_image_filename} --version 2" && \
 	echo "  start wsl2 container:" && \
 	echo "    wsl -d $(wsl_distribution)" && \
 	echo "Wait a couple of seconds before accessing it with rdp"

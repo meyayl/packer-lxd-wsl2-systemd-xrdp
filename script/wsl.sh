@@ -26,10 +26,10 @@ default = ${SSH_USERNAME}
 EOF
 
 export DEBIAN_FRONTEND=noninteractive
-apt-get install -yqq daemonize dbus-user-session fontconfig ubuntu-wsl
+apt-get install -yqq daemonize dbus-user-session fontconfig ubuntu-wsl wslu
 git clone https://github.com/meyayl/ubuntu-wsl2-systemd-script /tmp/ubuntu-wsl2-systemd-script
 cd /tmp/ubuntu-wsl2-systemd-script
 
-./install.sh --force
+./install.sh --force --no-wslg | true
 
 echo "---- END: wsl.sh -------"
