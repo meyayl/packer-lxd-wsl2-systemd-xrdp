@@ -14,7 +14,7 @@ The project is inspired by and directly uses artefacts from following projects:
 The target image contains:
 - systemd
 - ubuntu-wsl
-- mesa 21.3
+- mesa > 21.3
 - xrdp 
 - xfce 4.16
 - pulseaudio
@@ -24,8 +24,10 @@ WSLInterop works out of the box.
 On WSLg, thanks to WSLInterop, xrdp will leverage hardware accelaration provided by /dev/xdg.
 
 Note: Re-using the unix daemon socket of the WSLg host vm prevents the start of xrdp. 
-      For time beeing hardware accelerated WSLg is slower than softwar rendered WSL2.
-      This is something microsoft needs to fix. 
+      For time beeing hardware accelerated WSLg is slower than software rendered WSL2.
+
+      When microsofts patches to wayland, weston and freerdp are merged with the upstream projects,
+      It is concidered to migrate from xrdp to freerdp to leverage all wslg optimzations.
 
 ## Building the WSL box with Packer
 
