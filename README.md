@@ -127,7 +127,7 @@ Run the commands to import the image as distribution in WSL2:
 Example:
 
 ```
-    wsl.exe --import myDistribution  C:\wsldistros\sources\myDistribution C:\wsldistros\sources\myDistribution.tar.gz--version 2
+    wsl.exe --import myDistribution  C:\wsldistros\sources\myDistribution C:\wsldistros\sources\myDistribution.tar.gz --version 2
 ```
 Replace "myDistribution" with the name you want to name you imported distribution.
 
